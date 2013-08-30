@@ -1,8 +1,9 @@
-package com.maze.igame.util;
+package com.maze.tetris.utils;
 
-import com.maze.igame.util.LogThread.LogType;
+import com.maze.tetris.utils.LogThread.LogType;
 
 import android.content.Context;
+import android.os.Debug;
 import android.util.Log;
 
 public class TraceLog
@@ -41,7 +42,7 @@ public class TraceLog
     }
 
     public static void Print_I(String msg)
-    {
+    {        
         if (CommonDef.EnableLog)
         {
             mLogger.AddTraceLog(LogType.Type_Info, GetPrefix() + msg);
@@ -78,9 +79,10 @@ public class TraceLog
 
         try
         {
-            String file_Name = Thread.currentThread().getStackTrace()[3]
+            Debug.waitForDebugger();
+            String file_Name = Thread.currentThread().getStackTrace()[4]
                     .getFileName();
-            int line_Num = Thread.currentThread().getStackTrace()[3]
+            int line_Num = Thread.currentThread().getStackTrace()[4]
                     .getLineNumber();
 
             if (null != file_Name && file_Name.length() > 0)
