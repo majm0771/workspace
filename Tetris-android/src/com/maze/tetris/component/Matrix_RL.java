@@ -3,6 +3,7 @@ package com.maze.tetris.component;
 import com.maze.tetris.utils.TraceLog;
 
 /*
+ *      up          left        down        right
  *      0 0 0 0  |  0 0 0 0  |  0 1 0 0  |  0 0 0 0
  *      0 1 1 0  |  0 1 1 1  |  0 1 0 0  |  0 0 1 0
  *      0 0 1 0  |  0 1 0 0  |  0 1 1 0  |  1 1 1 0
@@ -11,39 +12,74 @@ import com.maze.tetris.utils.TraceLog;
 public class Matrix_RL extends BlockMatrix
 {
     @Override
-    public int[][] MakeMatrix(int nDirection)
+    public void SetMatrix(int direction)
     {
-        TraceLog.Print_D("Matrix_RL: MakeMatrix");
-        EraseMatrix();
+        TraceLog.Print_D("MakeMatrix: " + direction);
 
+        EraseMatrix();
+        
+        nDirection = direction;
         int n = nDirection % 4;
+        
         for (int i = 1; i < 4; i++)
         {
             if (n == SquareDirection.SD_UP)
             {
-                mMatrix[1][1] = 1;
-                mMatrix[i][2] = 1;
+                mMatrix[1][1] = SquareType.SQUARE_RL;
+                mMatrix[i][2] = SquareType.SQUARE_RL;
+
+                nWidth = 2;
+                nHeight = 3;
+                
+                nMinX = 1;
+                nMaxX = 3;
+                nMinY = 1;
+                nMaxY = 2;
             }
             else if (n == SquareDirection.SD_LEFT)
             {
-                mMatrix[2][1] = 1;
-                mMatrix[1][i] = 1;
+                mMatrix[2][1] = SquareType.SQUARE_RL;
+                mMatrix[1][i] = SquareType.SQUARE_RL;
+
+                nWidth = 3;
+                nHeight = 2;
+                
+                nMinX = 1;
+                nMaxX = 2;
+                nMinY = 1;
+                nMaxY = 3;
             }
             else if (n == SquareDirection.SD_DOWN)
             {
-                mMatrix[2][2] = 1;
-                mMatrix[i-1][1] = 1;
+                mMatrix[2][2] = SquareType.SQUARE_RL;
+                mMatrix[i - 1][1] = SquareType.SQUARE_RL;
+
+                nWidth = 2;
+                nHeight = 3;
+                
+                nMinX = 0;
+                nMaxX = 2;
+                nMinY = 1;
+                nMaxY = 2;
             }
             else if (n == SquareDirection.SD_RIGHT)
             {
-                mMatrix[1][2] = 1;
-                mMatrix[2][i-1] = 1;
+                mMatrix[1][2] = SquareType.SQUARE_RL;
+                mMatrix[2][i - 1] = SquareType.SQUARE_RL;
+
+                nWidth = 3;
+                nHeight = 2;
+                
+                nMinX = 1;
+                nMaxX = 2;
+                nMinY = 0;
+                nMaxY = 2;
             }
             else
             {
                 TraceLog.Print_E("Matrix_RL: unkown direction");
             }
         }
-        return super.MakeMatrix(nDirection);
+        Print();
     }
 }

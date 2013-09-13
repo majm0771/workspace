@@ -12,18 +12,33 @@ import com.maze.tetris.utils.TraceLog;
  *  
  */
         
-public class BlockMatrix
+public abstract class BlockMatrix
 {
     protected int [][] mMatrix = {{0, 0, 0, 0},
                                   {0, 0, 0, 0},
                                   {0, 0, 0, 0},
-                                  {0, 0, 0, 0}};
+                                  {0, 0, 0, 0}};   
+
+    public int nWidth = 0;    //方块最小行数
+    public int nHeight = 0;    //方块最小行数
     
-    public int[][] MakeMatrix(int nDirection)
+    public int nMinX = 0;    //方块最小行数
+    public int nMinY = 0;    //方块最小列数
+    public int nMaxX = 0;    //方块最大行数
+    public int nMaxY = 0;    //方块最大列数
+    
+    protected int nDirection = SquareDirection.SD_UNKOWN;
+    
+    public abstract void SetMatrix(int direction);
+
+    public int[][] GetMatrix()
     {
-//        TraceLog.Print_D("" + mMatrix);
-//        Print();
         return mMatrix;
+    }
+    
+    public int GetDirection()
+    {
+        return nDirection;
     }
     
     protected void EraseMatrix()

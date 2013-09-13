@@ -43,11 +43,52 @@ public class Square
     {
         return nType;
     }
-    
-    public int[][] GetMatrix(int nDirection)
+
+    public int[][] GetMatrix()
     {
-        PrintLog();
-        return mBlocks.MakeMatrix(nDirection);
+        return mBlocks.GetMatrix();
+    }
+    
+    public void UpdateMatrix(int direction)
+    {
+        int n = direction % 4;
+        if (n != mBlocks.GetDirection())
+        {
+            mBlocks.SetMatrix(direction);
+        }
+        else
+        {
+            TraceLog.Print_D("same direction, need not update");
+        }
+    }    
+    
+    public int GetWidth()
+    {
+        return mBlocks.nWidth;
+    }
+    
+    public int GetHeight()
+    {
+        return mBlocks.nHeight;
+    }
+
+    public int GetMinX()
+    {
+        return mBlocks.nMinX;
+    }    
+    public int GetMinY()
+    {
+        return mBlocks.nMinY;
+    }    
+    
+    public int GetMaxX()
+    {
+        return mBlocks.nMaxX;
+    }   
+    
+    public int GetMaxY()
+    {
+        return mBlocks.nMaxY;
     }
     
     public void PrintLog()

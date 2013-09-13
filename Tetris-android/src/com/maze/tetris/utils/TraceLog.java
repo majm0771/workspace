@@ -79,7 +79,6 @@ public class TraceLog
 
         try
         {
-            Debug.waitForDebugger();
             String file_Name = Thread.currentThread().getStackTrace()[4]
                     .getFileName();
             int line_Num = Thread.currentThread().getStackTrace()[4]

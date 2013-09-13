@@ -3,6 +3,7 @@ package com.maze.tetris.component;
 import com.maze.tetris.utils.TraceLog;
 
 /*
+ *      all
  *      0 0 0 0  
  *      0 1 1 0  
  *      0 1 1 0  
@@ -10,19 +11,30 @@ import com.maze.tetris.utils.TraceLog;
  */
 public class Matrix_O extends BlockMatrix
 {
-    @Override
-    public int[][] MakeMatrix(int nDirection)
+    
+    public Matrix_O()
     {
-        TraceLog.Print_D("Matrix_O: MakeMatrix");
         EraseMatrix();
-        
         for (int i = 1; i < 3; i++)
         {
             for (int j = 1; j < 3; j++)
             {
-                mMatrix[i][j] = 1;
+                mMatrix[i][j] = SquareType.SQUARE_O;
             }
         }
-        return super.MakeMatrix(nDirection);
+
+       nWidth = 2;
+       nHeight = 2;
+        
+       nMinX = nMinY = 1;
+       nMaxX = nMaxY = 2;
+       Print();
+    }
+    
+    @Override
+    public void SetMatrix(int direction)
+    {
+        TraceLog.Print_D("MakeMatrix: " + direction);
+        nDirection = direction;
     }
 }
